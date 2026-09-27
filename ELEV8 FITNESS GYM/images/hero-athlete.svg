@@ -1,0 +1,50 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a0f"/>
+      <stop offset="50%" stop-color="#141724"/>
+      <stop offset="100%" stop-color="#0b0d13"/>
+    </linearGradient>
+    <linearGradient id="voltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4ff00"/>
+      <stop offset="100%" stop-color="#00f0ff"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4ff00" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#heroBg)"/>
+  <circle cx="400" cy="300" r="260" fill="url(#aura)"/>
+  
+  <!-- Geometric decorative rings -->
+  <circle cx="400" cy="300" r="210" fill="none" stroke="#d4ff00" stroke-width="2" stroke-dasharray="14 10" opacity="0.4"/>
+  <circle cx="400" cy="300" r="170" fill="none" stroke="#00f0ff" stroke-width="2" opacity="0.3"/>
+  <circle cx="400" cy="300" r="130" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.25"/>
+
+  <!-- Athletic Trainer Form (Stylized dynamic silhouette) -->
+  <g transform="translate(400,310) scale(1.15)">
+    <!-- Dumbbell / Barbell Bar -->
+    <line x1="-160" y1="-80" x2="160" y2="-80" stroke="#d4ff00" stroke-width="9" stroke-linecap="round"/>
+    <!-- Weight plates -->
+    <rect x="-180" y="-120" width="22" height="80" rx="6" fill="#1f2433" stroke="#d4ff00" stroke-width="3"/>
+    <rect x="-155" y="-110" width="16" height="60" rx="4" fill="#00f0ff"/>
+    <rect x="158" y="-120" width="22" height="80" rx="6" fill="#1f2433" stroke="#d4ff00" stroke-width="3"/>
+    <rect x="139" y="-110" width="16" height="60" rx="4" fill="#00f0ff"/>
+    
+    <!-- Athlete Head -->
+    <circle cx="0" cy="-65" r="24" fill="#ffffff" opacity="0.95"/>
+    <!-- Shoulders & Torso (Athletic V-Taper) -->
+    <path d="M-60,-20 L60,-20 L38,90 L-38,90 Z" fill="url(#voltGrad)"/>
+    <!-- Arms holding bar -->
+    <path d="M-60,-20 L-110,-75" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    <path d="M60,-20 L110,-75" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    <!-- Waist & Legs -->
+    <path d="M-38,90 L-50,190 L-22,190 L-10,110 L10,110 L22,190 L50,190 L38,90 Z" fill="#1a1e2b" stroke="#00f0ff" stroke-width="2"/>
+  </g>
+
+  <!-- Typography overlay inside SVG -->
+  <text x="400" y="540" font-family="'Syne', Arial, sans-serif" font-weight="900" font-size="28" fill="#ffffff" text-anchor="middle" letter-spacing="4">ELEVE8 ATHLETIC PERFORMANCE</text>
+  <text x="400" y="565" font-family="'Outfit', Arial, sans-serif" font-weight="600" font-size="14" fill="#d4ff00" text-anchor="middle" letter-spacing="2">SMARTER â€¢ STRONGER â€¢ HEALTHIER</text>
+</svg>

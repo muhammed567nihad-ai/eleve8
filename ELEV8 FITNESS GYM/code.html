@@ -1,0 +1,2233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELEVE8 FITNESS GYM | Elevate Your Body, Elevate Your Life</title>
+  <meta name="description" content="ELEVE8 FITNESS GYM - Interactive online fitness platform featuring morning & evening routines, home workouts, certified trainers, voice guidance, and nutrition plans.">
+  
+  <!-- Google Fonts: Syne & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+</head>
+<body data-theme="dark">
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Audio Coach Floating Banner (Web Speech API Status) -->
+  <aside id="audio-coach-bar" class="audio-coach-bar" aria-live="polite" aria-hidden="true">
+    <div class="audio-coach-container">
+      <div class="audio-pulse-indicator" aria-hidden="true">
+        <span class="pulse-bar"></span>
+        <span class="pulse-bar"></span>
+        <span class="pulse-bar"></span>
+        <span class="pulse-bar"></span>
+      </div>
+      <div class="audio-coach-info">
+        <span class="audio-coach-label">TRAINER VOICE ACTIVE</span>
+        <p id="audio-coach-text" class="audio-coach-text">Listening to workout guidance...</p>
+      </div>
+      <div class="audio-coach-actions">
+        <button id="coach-replay-btn" class="coach-ctrl-btn" title="Replay instruction" aria-label="Replay instruction">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+        <button id="coach-stop-btn" class="coach-ctrl-btn coach-ctrl-stop" title="Stop speech" aria-label="Stop trainer voice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <header id="site-header" class="site-header">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#hero" class="logo-link" aria-label="ELEVE8 FITNESS GYM Homepage">
+        <div class="logo-icon-wrap" aria-hidden="true">
+          <img src="images/logo.svg" alt="ELEVE8 Logo Icon" class="logo-svg" width="44" height="44">
+        </div>
+        <div class="logo-text">
+          <span class="brand-eleve">ELEVE<span class="brand-8">8</span></span>
+          <span class="brand-sub">FITNESS GYM</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav id="primary-navigation" class="primary-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#online-workouts" class="nav-link">Workouts</a></li>
+          <li><a href="#morning-workout" class="nav-link">Morning</a></li>
+          <li><a href="#night-workout" class="nav-link">Night</a></li>
+          <li><a href="#food-plans" class="nav-link">Food Plans</a></li>
+          <li><a href="#trainers" class="nav-link">Trainers</a></li>
+          <li><a href="#goals" class="nav-link">Goals</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#register" class="nav-link">Register</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action Utilities -->
+      <div class="nav-actions">
+        <!-- Reduced Motion & Accessibility Toggle -->
+        <button id="a11y-motion-toggle" class="icon-toggle-btn" title="Toggle reduced motion for animations" aria-label="Toggle reduced motion animation mode" aria-pressed="false">
+          <svg class="icon-motion" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span class="sr-only">Toggle Reduced Motion</span>
+        </button>
+
+        <!-- Sound Voice Mute / Test Button -->
+        <button id="voice-test-btn" class="icon-toggle-btn" title="Test Trainer Voice" aria-label="Test Trainer Voice guidance">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+        </button>
+
+        <!-- CTA Join Button -->
+        <a href="#register" class="btn btn-primary nav-cta">
+          <span>JOIN ELEVE8</span>
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-toggle" class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+        <ul class="mobile-nav-list">
+          <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+          <li><a href="#online-workouts" class="mobile-nav-link">Workouts</a></li>
+          <li><a href="#morning-workout" class="mobile-nav-link">Morning Routine</a></li>
+          <li><a href="#night-workout" class="mobile-nav-link">Night Routine</a></li>
+          <li><a href="#food-plans" class="mobile-nav-link">Food Plans</a></li>
+          <li><a href="#trainers" class="mobile-nav-link">Trainers</a></li>
+          <li><a href="#goals" class="mobile-nav-link">Fitness Goals</a></li>
+          <li><a href="#faq" class="mobile-nav-link">Help & FAQ</a></li>
+          <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+        <div class="mobile-drawer-cta">
+          <a href="#register" class="btn btn-primary btn-full mobile-cta-btn">JOIN ELEVE8 NOW</a>
+          <button id="mobile-a11y-motion" class="btn btn-secondary btn-full btn-sm">
+            <span id="motion-mode-text">Enable Reduced Motion</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="main-content">
+
+    <!-- ========================================================
+         HERO SECTION
+    ======================================================== -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <!-- Animated Canvas Background / Visual Effects -->
+      <canvas id="hero-particles" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-backdrop-gradient" aria-hidden="true"></div>
+      <div class="hero-ambient-orb orb-1" aria-hidden="true"></div>
+      <div class="hero-ambient-orb orb-2" aria-hidden="true"></div>
+
+      <!-- Floating Geometric Fitness Shapes -->
+      <div class="hero-floating-shape shape-polygon" aria-hidden="true"></div>
+      <div class="hero-floating-shape shape-ring" aria-hidden="true"></div>
+      <div class="hero-floating-shape shape-cross" aria-hidden="true">+</div>
+
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge reveal-item">
+            <span class="badge-dot"></span>
+            <span>NEXT-GEN HYBRID FITNESS PLATFORM</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-heading reveal-item">
+            ELEVATE YOUR BODY.<br>
+            <span class="gradient-text">ELEVATE YOUR LIFE.</span>
+          </h1>
+
+          <p class="hero-subheading reveal-item">
+            Train smarter. Move stronger. Live healthier. Experience precision workouts, voice-coached training, and tailored nutrition anywhere.
+          </p>
+
+          <div class="hero-btn-group reveal-item">
+            <a href="#online-workouts" class="btn btn-primary btn-lg">
+              <span>Start Workout</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </a>
+            <a href="#register" class="btn btn-secondary btn-lg">
+              <span>Register Now</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>
+            </a>
+          </div>
+
+          <!-- Floating Animated Statistics -->
+          <div class="hero-stats-grid reveal-item" aria-label="Gym Key Statistics">
+            <div class="stat-card" tabindex="0">
+              <div class="stat-number" data-target="50">50+</div>
+              <div class="stat-label">Workouts Available</div>
+              <div class="stat-sub">From home or gym</div>
+            </div>
+            <div class="stat-card" tabindex="0">
+              <div class="stat-number" data-target="10">10+</div>
+              <div class="stat-label">Expert Trainers</div>
+              <div class="stat-sub">Certified coaching</div>
+            </div>
+            <div class="stat-card" tabindex="0">
+              <div class="stat-number">7</div>
+              <div class="stat-label">Days a Week</div>
+              <div class="stat-sub">Always open 24/7</div>
+            </div>
+            <div class="stat-card" tabindex="0">
+              <div class="stat-number-text">ONLINE</div>
+              <div class="stat-label">Interactive Platform</div>
+              <div class="stat-sub">Voice & timers included</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Showcase -->
+        <div class="hero-visual reveal-item" aria-hidden="true">
+          <div class="hero-card-glow"></div>
+          <div class="hero-graphic-wrap">
+            <img src="images/hero-athlete.jpg" 
+                 alt="Athlete training at ELEVE8 Fitness" 
+                 class="hero-main-img" 
+                 loading="eager">
+            <!-- Floating overlay pill 1 -->
+            <div class="floating-pill pill-top">
+              <span class="pill-icon">🔥</span>
+              <div>
+                <strong>350 kcal</strong>
+                <small>Average Morning Burn</small>
+              </div>
+            </div>
+            <!-- Floating overlay pill 2 -->
+            <div class="floating-pill pill-bottom">
+              <span class="pill-icon">⚡</span>
+              <div>
+                <strong>Voice Coach Ready</strong>
+                <small>Web Speech Guidance</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#morning-workout" class="hero-scroll-indicator" aria-label="Scroll down to morning workout">
+        <span class="scroll-mouse">
+          <span class="scroll-wheel"></span>
+        </span>
+        <span class="scroll-text">EXPLORE ROUTINES</span>
+      </a>
+    </section>
+
+    <!-- ========================================================
+         MORNING WORKOUT SECTION
+    ======================================================== -->
+    <section id="morning-workout" class="section morning-section" aria-labelledby="morning-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag sunrise-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span>AM ENERGIZER</span>
+          </div>
+          <h2 id="morning-title" class="section-title">START YOUR MORNING STRONG</h2>
+          <p class="section-subtitle">
+            Awaken your metabolism, ignite focus, and elevate your mobility before your day starts. Click any workout to launch the interactive circular timer or listen to your voice coach.
+          </p>
+        </div>
+
+        <!-- 8 Morning Workout Cards -->
+        <div class="workouts-grid" id="morning-grid">
+          <!-- Card 1 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-1">
+            <div class="card-media">
+              <img src="images/workout-warmup.jpg" alt="Full Body Warm-Up exercise" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                5 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">1. Full Body Warm-Up</h3>
+              <p class="exercise-desc">Dynamic joint circles, arm swings, and gentle hip openers to raise core temperature and lubricate joints.</p>
+              <div class="exercise-meta">
+                <span>Targets: Joints & Blood Flow</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Full Body Warm-Up" data-duration="30" data-instructions="Start with gentle neck rotations, shoulder rolls, and hip hinges. Keep your breathing steady and rhythmic.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Full Body Warm-Up" data-speech="Welcome to your morning full body warm-up. Begin with slow neck rotations, roll your shoulders back, and perform gentle hip hinges. Breathe deeply in through your nose and out through your mouth.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-2">
+            <div class="card-media">
+              <img src="images/workout-stretch.jpg" alt="Morning dynamic stretching" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                8 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">2. Dynamic Stretching</h3>
+              <p class="exercise-desc">Hamstring sweeps, torso twists, and chest expansion to relieve morning spinal tightness and stiffness.</p>
+              <div class="exercise-meta">
+                <span>Targets: Spine, Hamstrings, Chest</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Dynamic Stretching" data-duration="45" data-instructions="Reach down to touch your toes with soft knees, sweep upward, and open your chest to the ceiling.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Dynamic Stretching" data-speech="Dynamic stretching phase. Inhale as you reach overhead, sweep your arms down toward your toes keeping knees softly bent. Never bounce; let your breath deepen each stretch.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-3">
+            <div class="card-media">
+              <img src="images/workout-squats.jpg" alt="Bodyweight Squats" loading="lazy">
+              <span class="badge-difficulty intermediate">Intermediate</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">3. Bodyweight Squats</h3>
+              <p class="exercise-desc">Fundamental lower body power builder. Engages quads, glutes, and core while establishing functional knee stability.</p>
+              <div class="exercise-meta">
+                <span>Targets: Quads, Glutes & Core</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Bodyweight Squats" data-duration="40" data-instructions="Feet shoulder-width apart. Push hips back, keep chest proud, and press through whole foot on the ascent.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Bodyweight Squats" data-speech="Time for bodyweight squats. Stand tall with feet shoulder-width apart. Sit your hips back like sitting into an imaginary chair. Keep your chest lifted and push firmly through your heels to return to standing.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-4">
+            <div class="card-media">
+              <img src="images/workout-pushups.jpg" alt="Push-ups exercise" loading="lazy">
+              <span class="badge-difficulty intermediate">Intermediate</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">4. Push-Ups</h3>
+              <p class="exercise-desc">Upper body strength staple. Targets pectorals, deltoids, and triceps with tight core bracing throughout.</p>
+              <div class="exercise-meta">
+                <span>Targets: Chest, Shoulders, Triceps</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Push-Ups" data-duration="35" data-instructions="Hands slightly wider than shoulders. Maintain a rigid plank line. Lower chest to floor and push up with power.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Push-Ups" data-speech="Push-ups ready. Hands slightly outside your shoulders. Engage your glutes and draw your navel toward your spine. Lower down until elbows reach ninety degrees, then exhale and push the floor away.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-5">
+            <div class="card-media">
+              <img src="images/workout-glute.jpg" alt="Lunges exercise" loading="lazy">
+              <span class="badge-difficulty intermediate">Intermediate</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">5. Forward & Reverse Lunges</h3>
+              <p class="exercise-desc">Unilateral balance, hip flexor activation, and hamstring control. Develops athletic symmetry and gait power.</p>
+              <div class="exercise-meta">
+                <span>Targets: Hamstrings, Calves, Hips</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Forward & Reverse Lunges" data-duration="40" data-instructions="Step forward smoothly. Drop back knee toward floor at 90 degrees. Push back through front heel.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Lunges" data-speech="Moving into lunges. Take a controlled stride forward, lowering your back knee until both legs form clean right angles. Keep your torso upright and step back smoothly. Alternate legs smoothly.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-6">
+            <div class="card-media">
+              <img src="images/workout-plank.jpg" alt="Plank hold" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                5 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">6. Isometric Plank Hold</h3>
+              <p class="exercise-desc">Core pillar strength. Builds deep transverse abdominis endurance and protects lower back during daily activity.</p>
+              <div class="exercise-meta">
+                <span>Targets: Transverse Core & Shoulders</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Isometric Plank Hold" data-duration="30" data-instructions="Forearms parallel, elbows under shoulders. Squeeze glutes and abs. Avoid sagging hips or hiking up.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Plank" data-speech="Lock in your plank position. Elbows right below shoulders, squeeze your glutes hard, and pull your belly button up. Keep your neck neutral and breathe steadily. Hold strong!">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 7 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-7">
+            <div class="card-media">
+              <img src="images/workout-jumpingjacks.jpg" alt="Light cardio high knees" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                12 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">7. Morning Light Cardio</h3>
+              <p class="exercise-desc">High knees, boxer shuffle, and jumping jacks sequence to stimulate endorphins and cardiovascular output.</p>
+              <div class="exercise-meta">
+                <span>Targets: Heart Rate & Aerobic Capacity</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Morning Light Cardio" data-duration="45" data-instructions="Stay light on the balls of your feet. Maintain a rhythmic bounce with relaxed shoulders and active arms.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Light Cardio" data-speech="Light cardio pulse time! Transition into a brisk boxer shuffle, then add jumping jacks. Stay light on your toes, keep your breathing fluid, and feel that fresh morning energy surging!">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 8 -->
+          <article class="workout-card reveal-item" data-category="morning" data-exercise-id="m-8">
+            <div class="card-media">
+              <img src="images/workout-cooldown.jpg" alt="Cool Down stretch" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">8. Morning Cool Down</h3>
+              <p class="exercise-desc">Child's pose, cat-cow flow, and deep thoracic breathing to calm the central nervous system for a productive day.</p>
+              <div class="exercise-meta">
+                <span>Targets: Nervous System Recovery</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Morning Cool Down" data-duration="30" data-instructions="Slow gentle movements. Inhale arching the spine into cow, exhale rounding gently into cat.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Morning Cool Down" data-speech="Great effort this morning. Now let us center the body. Drop into child pose or easy cat-cow stretches. Breathe deeply into your belly and appreciate the strength you created today.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         NIGHT WORKOUT SECTION
+    ======================================================== -->
+    <section id="night-workout" class="section night-section" aria-labelledby="night-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag moon-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>PM RESTORATION</span>
+          </div>
+          <h2 id="night-title" class="section-title">END YOUR DAY STRONG</h2>
+          <p class="section-subtitle">
+            Release accumulated physical tension, decompress the spine, and transition into restorative evening recovery with these specialized low-impact evening sessions.
+          </p>
+        </div>
+
+        <!-- 7 Night Workout Cards -->
+        <div class="workouts-grid" id="night-grid">
+          <!-- Night Card 1 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-1">
+            <div class="card-media">
+              <img src="images/workout-evening-stretch.jpg" alt="Evening Stretch Routine" loading="lazy">
+              <span class="badge-difficulty beginner">All Levels</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">1. Evening Full Body Stretch</h3>
+              <p class="exercise-desc">Unwind desk posture with deep quad stretches, cobra chest expansions, and gentle neck release movements.</p>
+              <div class="exercise-meta">
+                <span>Targets: Neck, Shoulders & Lower Back</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Evening Full Body Stretch" data-duration="45" data-instructions="Sink gently into each stretch. Hold without straining, letting gravity open up tight muscles.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Evening Stretch" data-speech="Welcome to your evening decompression. Release the day's stress. Drop your shoulders away from your ears, lengthen your spine, and allow every exhale to soften your muscle tension.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Night Card 2 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-2">
+            <div class="card-media">
+              <img src="images/workout-mobility.jpg" alt="Mobility Routine" loading="lazy">
+              <span class="badge-difficulty beginner">Gentle</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                12 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">2. Spine & Hip Mobility</h3>
+              <p class="exercise-desc">90/90 hip switches, thread-the-needle thoracic twists, and ankle circles to restore natural movement ranges.</p>
+              <div class="exercise-meta">
+                <span>Targets: Pelvic Tilt & Thoracic Spine</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Spine & Hip Mobility" data-duration="40" data-instructions="Rotate gently through hips. Keep hands braced behind you for support. Flow with your natural cadence.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Mobility Routine" data-speech="Moving into evening mobility. Sit on the floor in a ninety-ninety hip position. Slowly rotate knees from left to right, maintaining upright posture to lubricate the hip sockets.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Night Card 3 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-3">
+            <div class="card-media">
+              <img src="images/workout-mobility-joint.jpg" alt="Light Evening Cardio" loading="lazy">
+              <span class="badge-difficulty beginner">Low Impact</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                8 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">3. Low-Impact Calorie Burn</h3>
+              <p class="exercise-desc">No-jump step jacks, shadow boxing punches, and standing knee-to-elbow drives for silent apartment workouts.</p>
+              <div class="exercise-meta">
+                <span>Targets: Gentle Aerobics, No Jumps</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Low-Impact Calorie Burn" data-duration="30" data-instructions="Keep movements fluid without high-impact thumps. Engage abdominal wall as knees rise.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Light Cardio" data-speech="Low impact evening cardio. Step out smoothly to each side with arm reach. No jumping required, making this gentle on joints while keeping circulation active.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Night Card 4 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-4">
+            <div class="card-media">
+              <img src="images/workout-catcow.jpg" alt="Night Core workout" loading="lazy">
+              <span class="badge-difficulty intermediate">Moderate</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">4. Evening Core Sculpt</h3>
+              <p class="exercise-desc">Dead bugs, bird-dogs, and slow flutter kicks. Focuses on muscular control without straining cervical spine.</p>
+              <div class="exercise-meta">
+                <span>Targets: Lower Abs & Pelvic Floor</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Evening Core Sculpt" data-duration="35" data-instructions="Press small of your back firmly into the mat. Extend opposite arm and leg while breathing out.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Core Workout" data-speech="Core control time. Lie flat on your back, knees bent at ninety degrees. Slowly extend opposite arm and leg, pressing your lower back firmly into the floor. Controlled cadence is key.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Night Card 5 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-5">
+            <div class="card-media">
+              <img src="images/workout-evening-stretch.jpg" alt="Full body evening reset" loading="lazy">
+              <span class="badge-difficulty intermediate">Moderate</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                15 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">5. Full Body Reset Flow</h3>
+              <p class="exercise-desc">Glute bridges, modified downward dog, and slow tempo bodyweight squats to balance all major muscle chains.</p>
+              <div class="exercise-meta">
+                <span>Targets: Total Body Symmetrical Tone</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Full Body Reset Flow" data-duration="45" data-instructions="Drive through heels into glute bridges, hold at top for 2 seconds, then lower under total control.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Full Body Reset" data-speech="Full body reset flow. Ground your feet and lift into a high glute bridge, engaging your hamstrings and core. Hold for two counts, then roll down vertebra by vertebra.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Night Card 6 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-6">
+            <div class="card-media">
+              <img src="images/workout-meditation.jpg" alt="Relaxation exercises" loading="lazy">
+              <span class="badge-difficulty beginner">Relaxing</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                8 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">6. Relaxation & Breathwork</h3>
+              <p class="exercise-desc">Box breathing (4-4-4-4) and progressive muscle relaxation to lower cortisol levels and prepare body for deep sleep.</p>
+              <div class="exercise-meta">
+                <span>Targets: Vagus Nerve & Sleep Prep</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Relaxation & Breathwork" data-duration="30" data-instructions="Inhale for 4 seconds, hold 4 seconds, exhale 4 seconds, hold empty 4 seconds. Let eyelids stay soft.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Relaxation" data-speech="Begin box breathing. Inhale for four counts: one, two, three, four. Hold your breath for four counts. Exhale smoothly for four counts. Release all tension in your jaw, shoulders, and chest.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Night Card 7 -->
+          <article class="workout-card night-card reveal-item" data-category="night" data-exercise-id="n-7">
+            <div class="card-media">
+              <img src="images/workout-legswall.jpg" alt="Night Cool Down" loading="lazy">
+              <span class="badge-difficulty beginner">Gentle</span>
+              <span class="badge-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                7 Mins
+              </span>
+            </div>
+            <div class="card-body">
+              <h3 class="exercise-name">7. Restorative Night Cool Down</h3>
+              <p class="exercise-desc">Legs-up-the-wall inversion or lying butterfly pose to optimize lymphatic venous return and relax tight hip flexors.</p>
+              <div class="exercise-meta">
+                <span>Targets: Venous Return & Full Body Ease</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-accent btn-start-timer" data-name="Restorative Night Cool Down" data-duration="40" data-instructions="Lie comfortably, elevating legs against a wall or resting feet together in butterfly pose. Rest deeply.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance for Night Cool Down" data-speech="Final cool down. Rest comfortably with legs supported. Feel your heartbeat slow down to a serene rhythm. Congratulations on dedicating time to your health today. Sleep well and recover strong.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ONLINE HOME WORKOUTS (WORKOUT ANYWHERE)
+    ======================================================== -->
+    <section id="online-workouts" class="section workouts-section" aria-labelledby="online-title">
+      <div class="section-container">
+        <!-- Explanatory Banner -->
+        <div class="anywhere-banner reveal-item">
+          <div class="banner-content">
+            <div class="section-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span>STREAM & TRAIN EVERYWHERE</span>
+            </div>
+            <h2 id="online-title" class="banner-title">WORKOUT ANYWHERE</h2>
+            <p class="banner-desc">
+              Your fitness shouldn't be limited by four walls. Whether you're in your living room with a smartphone, traveling with a tablet, or working out beside your desk on a laptop, ELEVE8 gives you studio-grade training routines anywhere in the world.
+            </p>
+            <div class="device-support-pills">
+              <span class="device-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Smartphone</span>
+              <span class="device-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Tablet</span>
+              <span class="device-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg> Laptop / PC</span>
+              <span class="device-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Zero Equipment Needed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-wrapper reveal-item" role="region" aria-label="Workout Category Filters">
+          <div class="filter-scroll-container">
+            <button class="filter-btn active" data-filter="all">All Workouts <span class="filter-count">10</span></button>
+            <button class="filter-btn" data-filter="beginner">Beginner</button>
+            <button class="filter-btn" data-filter="full-body">Full Body</button>
+            <button class="filter-btn" data-filter="strength">Strength</button>
+            <button class="filter-btn" data-filter="cardio">Cardio</button>
+            <button class="filter-btn" data-filter="core">Core</button>
+            <button class="filter-btn" data-filter="flexibility">Flexibility</button>
+            <button class="filter-btn" data-filter="mobility">Mobility</button>
+            <button class="filter-btn" data-filter="home">Home Workout</button>
+            <button class="filter-btn" data-filter="quick">Quick 10-Minute</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Filterable Workout Cards Grid -->
+        <div class="workouts-grid" id="filterable-workouts-grid">
+          <!-- Item 1: Beginner / Home / Quick -->
+          <article class="workout-card filter-item reveal-item" data-tags="beginner home quick full-body">
+            <div class="card-media">
+              <img src="images/workout-zero-equip.jpg" alt="10-Minute Zero Equipment Starter" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">10 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Quick 10-Min</span>
+                <span class="card-tag">Home Workout</span>
+              </div>
+              <h3 class="exercise-name">10-Minute Zero Equipment Starter</h3>
+              <p class="exercise-desc">A gentle introduction to full-body calisthenics designed to get your heart rate up without straining joints.</p>
+              <div class="exercise-meta">
+                <span>Equipment: None • Space: Living Room</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="10-Minute Zero Equipment Starter" data-duration="30" data-instructions="Perform each movement smoothly at a conversational pace. Focus on good form over speed.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Welcome to your ten minute zero equipment workout. We are going to do full-body movements with zero impact. Focus on breathing and form. Let us begin!">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 2: Strength / Full Body -->
+          <article class="workout-card filter-item reveal-item" data-tags="strength full-body home">
+            <div class="card-media">
+              <img src="images/workout-hypertrophy.jpg" alt="Hypertrophy Bodyweight Circuit" loading="lazy">
+              <span class="badge-difficulty advanced">Intermediate</span>
+              <span class="badge-duration">25 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Strength</span>
+                <span class="card-tag">Full Body</span>
+              </div>
+              <h3 class="exercise-name">Hypertrophy Calisthenics Circuit</h3>
+              <p class="exercise-desc">Elevate progressive muscle tension using decline pushups, tempo squats, and doorframe isometric rows.</p>
+              <div class="exercise-meta">
+                <span>Equipment: Bodyweight • Intensity: High</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Hypertrophy Calisthenics Circuit" data-duration="45" data-instructions="Slow tempo: 3 seconds down, 1 second pause, 1 second explosive push.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Strength session starting. Slow down your eccentric tempo. Take three controlled seconds descending into every rep, pause at tension, and explode up with power.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 3: Cardio / Quick -->
+          <article class="workout-card filter-item reveal-item" data-tags="cardio quick home">
+            <div class="card-media">
+              <img src="images/workout-hiit.jpg" alt="High Intensity Interval Burn" loading="lazy">
+              <span class="badge-difficulty intermediate">Intermediate</span>
+              <span class="badge-duration">10 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Cardio</span>
+                <span class="card-tag">Quick 10-Min</span>
+              </div>
+              <h3 class="exercise-name">High-Intensity Interval Burn (HIIT)</h3>
+              <p class="exercise-desc">Tabata style 20s work / 10s rest intervals including mountain climbers, burpees, and skater bounds.</p>
+              <div class="exercise-meta">
+                <span>Burn: ~160 kcal • Interval: 20s / 10s</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="High-Intensity Interval Burn" data-duration="20" data-instructions="Give 100% effort during the 20-second work sprint, then catch your breath on the 10-second rest.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="HIIT countdown active! Twenty seconds of maximum effort followed by ten seconds of active recovery. Give everything you have for these intervals. Stay focused!">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 4: Core / Quick -->
+          <article class="workout-card filter-item reveal-item" data-tags="core quick home beginner">
+            <div class="card-media">
+              <img src="images/workout-core.jpg" alt="Hardcore 360 Abdominals" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">10 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Core</span>
+                <span class="card-tag">Quick 10-Min</span>
+              </div>
+              <h3 class="exercise-name">360° Core & Oblique Shield</h3>
+              <p class="exercise-desc">Target upper, lower, and lateral core wall with side planks, Russian twists, and hollow body holds.</p>
+              <div class="exercise-meta">
+                <span>Equipment: Yoga Mat • Focus: Posture</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="360° Core & Oblique Shield" data-duration="30" data-instructions="Keep lower back glued down on hollow holds. Rotate from rib cage during twists.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Core blast routine! Keep your lower back flat to the floor on hollow body holds. Rotate your ribcage on twists, keeping neck relaxed and abs rock solid.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 5: Flexibility / Mobility -->
+          <article class="workout-card filter-item reveal-item" data-tags="flexibility mobility home beginner">
+            <div class="card-media">
+              <img src="images/workout-childspose.jpg" alt="Full Body Flexibility & Flow" loading="lazy">
+              <span class="badge-difficulty beginner">All Levels</span>
+              <span class="badge-duration">18 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Flexibility</span>
+                <span class="card-tag">Mobility</span>
+              </div>
+              <h3 class="exercise-name">Deep Flow Flexibility & Recovery</h3>
+              <p class="exercise-desc">Vinyasa yoga inspired transitions targeting tight hips, hamstrings, and thoracic spine stiffness.</p>
+              <div class="exercise-meta">
+                <span>Intensity: Gentle • Focus: Range of Motion</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Deep Flow Flexibility & Recovery" data-duration="45" data-instructions="Never force a stretch. Allow breathing to relax muscle spindles naturally into greater depth.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Deep flexibility flow. Inhale lengthen your spine, exhale surrender into the hip opening. Never force pain, just breathe into comfortable sensations of release.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 6: Mobility / Strength -->
+          <article class="workout-card filter-item reveal-item" data-tags="mobility strength full-body">
+            <div class="card-media">
+              <img src="images/workout-shadowboxing.jpg" alt="Primal Movement Mobility" loading="lazy">
+              <span class="badge-difficulty intermediate">Intermediate</span>
+              <span class="badge-duration">20 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Mobility</span>
+                <span class="card-tag">Functional</span>
+              </div>
+              <h3 class="exercise-name">Primal Movement Mobility Flow</h3>
+              <p class="exercise-desc">Bear crawls, deep frog sits, crab reaches, and duck walks designed to build bulletproof joints and agility.</p>
+              <div class="exercise-meta">
+                <span>Targets: Wrists, Hips, Shoulders</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Primal Movement Mobility Flow" data-duration="40" data-instructions="Coordinate hands and opposite feet. Keep knees low to floor on bear crawls.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Primal mobility activation. Set up in quadruped position. Float your knees one inch off the mat. Move slowly with opposite hand and foot in synchronization. Feel the core engagement.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 7: Cardio / Full Body / Home -->
+          <article class="workout-card filter-item reveal-item" data-tags="cardio full-body home">
+            <div class="card-media">
+              <img src="images/workout-burpees.jpg" alt="Athletic Cardio Conditioning" loading="lazy">
+              <span class="badge-difficulty advanced">Intermediate</span>
+              <span class="badge-duration">22 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Cardio</span>
+                <span class="card-tag">Conditioning</span>
+              </div>
+              <h3 class="exercise-name">Athletic Conditioning Matrix</h3>
+              <p class="exercise-desc">Sports agility drills, lateral bounds, shuttle taps, and fast feet drills to enhance athletic responsiveness.</p>
+              <div class="exercise-meta">
+                <span>Burn: ~240 kcal • Speed & Agility</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Athletic Conditioning Matrix" data-duration="35" data-instructions="Land softly on your midfoot with knees absorbing force. Keep eyes up and chest proud.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Athletic conditioning session! Explode laterally into bounds, stick the landing with a soft knee, then spring back. Push your anaerobic ceiling. You got this!">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 8: Beginner / Strength / Home -->
+          <article class="workout-card filter-item reveal-item" data-tags="beginner strength home quick">
+            <div class="card-media">
+              <img src="images/workout-kettlebell.jpg" alt="Foundational Strength for Beginners" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">10 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Beginner</span>
+                <span class="card-tag">Quick 10-Min</span>
+              </div>
+              <h3 class="exercise-name">Foundational Strength 101</h3>
+              <p class="exercise-desc">Master the hinge, squat, push, and pull mechanics with clear cues and zero chance of overwhelm.</p>
+              <div class="exercise-meta">
+                <span>Level: True Beginner • Low Risk</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Foundational Strength 101" data-duration="30" data-instructions="Master each movement pattern before adding speed. Breathe in on preparation, exhale on work.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Welcome to foundational strength. Check your feet position, brace your torso gently, and move with deliberation. Consistency matters far more than perfection today.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 9: Core / Strength -->
+          <article class="workout-card filter-item reveal-item" data-tags="core strength home">
+            <div class="card-media">
+              <img src="images/workout-flexibility.jpg" alt="Isometric Core Steel" loading="lazy">
+              <span class="badge-difficulty intermediate">Intermediate</span>
+              <span class="badge-duration">15 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Core</span>
+                <span class="card-tag">Isometric</span>
+              </div>
+              <h3 class="exercise-name">Isometric Core Steel Matrix</h3>
+              <p class="exercise-desc">Anti-rotation holds, pallof presses with bands, and extended lever planks to prevent spinal rotation under load.</p>
+              <div class="exercise-meta">
+                <span>Focus: Spine Protection & Strength</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Isometric Core Steel Matrix" data-duration="40" data-instructions="Resist twisting or bending. Imagine your torso is a solid titanium cylinder.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Anti-rotation hold. Lock your arms out straight, breathe slowly, and resist any rotational pull. This builds raw functional stability for your spine.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 10: Full Body / Quick / Home -->
+          <article class="workout-card filter-item reveal-item" data-tags="full-body quick home beginner">
+            <div class="card-media">
+              <img src="images/workout-posture.jpg" alt="Desk Worker Recovery & Boost" loading="lazy">
+              <span class="badge-difficulty beginner">Beginner</span>
+              <span class="badge-duration">10 Mins</span>
+            </div>
+            <div class="card-body">
+              <div class="tag-row">
+                <span class="card-tag">Quick 10-Min</span>
+                <span class="card-tag">Desk Relief</span>
+              </div>
+              <h3 class="exercise-name">Desk Break 10-Min Re-Energizer</h3>
+              <p class="exercise-desc">Quickly alleviate rounded shoulders, tight hip flexors, and brain fog in between work meetings.</p>
+              <div class="exercise-meta">
+                <span>No Sweating Required • Stand & Move</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary btn-start-timer" data-name="Desk Break 10-Min Re-Energizer" data-duration="30" data-instructions="Stand up away from your desk. Reach overhead, squeeze shoulder blades, and perform gentle lunges.">
+                <span>START WORKOUT</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <button class="btn-voice-trainer" aria-label="Trainer voice guidance" data-speech="Step away from your screen. Interlace your fingers behind your back and open up your chest. Take three deep breaths, roll your shoulders back, and reactivate your posture.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>VOICE COACH</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         TRAINERS SECTION
+    ======================================================== -->
+    <section id="trainers" class="section trainers-section" aria-labelledby="trainers-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>WORLD-CLASS COACHING</span>
+          </div>
+          <h2 id="trainers-title" class="section-title">MEET YOUR ELEVE8 TRAINERS</h2>
+          <p class="section-subtitle">
+            Our certified master coaches specialize in functional strength, restorative mobility, and high-performance lifestyle transformations. Listen to their introductions and guidance.
+          </p>
+        </div>
+
+        <div class="trainers-grid">
+          <!-- Trainer 1 -->
+          <article class="trainer-card reveal-item" data-trainer="marcus">
+            <div class="trainer-media">
+              <img src="images/trainer-marcus.jpg" alt="Coach Marcus Vance" loading="lazy">
+              <div class="trainer-badge-specialty">Strength & Conditioning</div>
+            </div>
+            <div class="trainer-content">
+              <h3 class="trainer-name">Marcus Vance</h3>
+              <div class="trainer-exp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>12+ Years Coaching • CSCS Certified</span>
+              </div>
+              <p class="trainer-bio">Former collegiate athlete specializing in heavy compound lifts, biomechanics, and injury prevention.</p>
+              <div class="trainer-card-actions">
+                <button class="btn btn-sm btn-outline btn-view-trainer" data-trainer-name="Marcus Vance" data-specialty="Strength & Conditioning" data-exp="12+ Years" data-bio="Marcus has trained over 1,400 athletes and everyday lifters. His training philosophy hinges on progressive overload, perfect joint stacking, and sustainable muscle gains without burning out your nervous system.">
+                  View Profile
+                </button>
+                <button class="btn-voice-trainer btn-sm" aria-label="Listen to Marcus voice intro" data-speech="Hey team, Marcus Vance here! My core rule is simple: form first, weight second. Focus on full range of motion and you will build bulletproof strength for life. Let us get to work.">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>Voice Coach</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Trainer 2 -->
+          <article class="trainer-card reveal-item" data-trainer="elena">
+            <div class="trainer-media">
+              <img src="images/trainer-elena.jpg" alt="Coach Elena Rostova" loading="lazy">
+              <div class="trainer-badge-specialty">Yoga & Mobility</div>
+            </div>
+            <div class="trainer-content">
+              <h3 class="trainer-name">Elena Rostova</h3>
+              <div class="trainer-exp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>9+ Years Experience • E-RYT 500</span>
+              </div>
+              <p class="trainer-bio">Specialist in restorative vinyasa, myofascial release, and breath-centered parasympathetic recovery.</p>
+              <div class="trainer-card-actions">
+                <button class="btn btn-sm btn-outline btn-view-trainer" data-trainer-name="Elena Rostova" data-specialty="Yoga & Mobility" data-exp="9+ Years" data-bio="Elena combines ancient yogic traditions with modern functional mobility science. She helps lifters and sedentary professionals restore lost ranges of motion in their hips and spine.">
+                  View Profile
+                </button>
+                <button class="btn-voice-trainer btn-sm" aria-label="Listen to Elena voice intro" data-speech="Hello, I am Elena Rostova. True strength requires mobility. When your body moves freely without restriction, your entire quality of life expands. Connect your breath with every single movement.">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>Voice Coach</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Trainer 3 -->
+          <article class="trainer-card reveal-item" data-trainer="jordan">
+            <div class="trainer-media">
+              <img src="images/trainer-jordan.jpg" alt="Coach Jordan Miller" loading="lazy">
+              <div class="trainer-badge-specialty">HIIT & Cardio</div>
+            </div>
+            <div class="trainer-content">
+              <h3 class="trainer-name">Jordan Miller</h3>
+              <div class="trainer-exp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>8+ Years • Master Trainer NASM</span>
+              </div>
+              <p class="trainer-bio">High energy conditioning specialist turning complex cardio intervals into empowering, fast-paced workouts.</p>
+              <div class="trainer-card-actions">
+                <button class="btn btn-sm btn-outline btn-view-trainer" data-trainer-name="Jordan Miller" data-specialty="HIIT & Cardio" data-exp="8+ Years" data-bio="Jordan is renowned for his infectious energy. He coaches high-efficiency interval sessions designed to maximize oxygen uptake and post-exercise calorie burning in under 25 minutes.">
+                  View Profile
+                </button>
+                <button class="btn-voice-trainer btn-sm" aria-label="Listen to Jordan voice intro" data-speech="What is up ELEVE8 fam! Jordan Miller here. The hardest part is hitting start. Once your shoes are laced and your mindset is locked in, we crush it together one interval at a time!">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>Voice Coach</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Trainer 4 -->
+          <article class="trainer-card reveal-item" data-trainer="sarah">
+            <div class="trainer-media">
+              <img src="images/trainer-sarah.jpg" alt="Coach Sarah Chen" loading="lazy">
+              <div class="trainer-badge-specialty">Functional & Calisthenics</div>
+            </div>
+            <div class="trainer-content">
+              <h3 class="trainer-name">Sarah Chen</h3>
+              <div class="trainer-exp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>10+ Years • Calisthenics Pro</span>
+              </div>
+              <p class="trainer-bio">Bodyweight mastery coach specializing in handstands, pull-up progressions, and core gymnastics control.</p>
+              <div class="trainer-card-actions">
+                <button class="btn btn-sm btn-outline btn-view-trainer" data-trainer-name="Sarah Chen" data-specialty="Functional & Calisthenics" data-exp="10+ Years" data-bio="Sarah breaks down elite gymnastics and calisthenics moves into accessible, step-by-step progressions suitable for anyone regardless of starting fitness level.">
+                  View Profile
+                </button>
+                <button class="btn-voice-trainer btn-sm" aria-label="Listen to Sarah voice intro" data-speech="Hi there, I am Sarah Chen. Your own body is the ultimate gym. When you learn to control your levers and engage your core stabilizers, you unlock unbelievable functional agility.">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>Voice Coach</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Trainer 5 -->
+          <article class="trainer-card reveal-item" data-trainer="david">
+            <div class="trainer-media">
+              <img src="images/trainer-kai.jpg" alt="Coach David Okafor" loading="lazy">
+              <div class="trainer-badge-specialty">Home Workouts & Beginners</div>
+            </div>
+            <div class="trainer-content">
+              <h3 class="trainer-name">David Okafor</h3>
+              <div class="trainer-exp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>7+ Years • ACE Certified</span>
+              </div>
+              <p class="trainer-bio">Passionate beginner advocate focused on comfortable habits, safe joint angles, and long-term adherence.</p>
+              <div class="trainer-card-actions">
+                <button class="btn btn-sm btn-outline btn-view-trainer" data-trainer-name="David Okafor" data-specialty="Home & Beginner Fitness" data-exp="7+ Years" data-bio="David understands what it is like to start from square one. He designs home routines that fit into tight living spaces and busy family schedules with zero intimidation.">
+                  View Profile
+                </button>
+                <button class="btn-voice-trainer btn-sm" aria-label="Listen to David voice intro" data-speech="Greetings, Coach David here. If you are just getting started, you are in the right place. You do not need expensive machines. Just bring a positive attitude and ten minutes today.">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>Voice Coach</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Trainer 6 -->
+          <article class="trainer-card reveal-item" data-trainer="maya">
+            <div class="trainer-media">
+              <img src="images/trainer-maya.jpg" alt="Coach Maya Patel" loading="lazy">
+              <div class="trainer-badge-specialty">Flexibility & Posture</div>
+            </div>
+            <div class="trainer-content">
+              <h3 class="trainer-name">Maya Patel</h3>
+              <div class="trainer-exp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>11+ Years • Physical Therapy Ast.</span>
+              </div>
+              <p class="trainer-bio">Corrective exercise specialist helping athletes and remote professionals realign posture and relieve chronic pain.</p>
+              <div class="trainer-card-actions">
+                <button class="btn btn-sm btn-outline btn-view-trainer" data-trainer-name="Maya Patel" data-specialty="Flexibility & Posture" data-exp="11+ Years" data-bio="Maya works closely with individuals experiencing stiffness from prolonged sitting, providing ergonomic alignment protocols that produce noticeable relief in days.">
+                  View Profile
+                </button>
+                <button class="btn-voice-trainer btn-sm" aria-label="Listen to Maya voice intro" data-speech="Welcome, Maya Patel here. Posture is how your body speaks to the world. When we strengthen neglected postural muscles and open tight fascial chains, movement feels effortless again.">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>Voice Coach</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FOOD PLAN SECTION (FUEL YOUR FITNESS)
+    ======================================================== -->
+    <section id="food-plans" class="section food-section" aria-labelledby="food-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag nutrition-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            <span>OPTIMAL NUTRITION</span>
+          </div>
+          <h2 id="food-title" class="section-title">FUEL YOUR FITNESS</h2>
+          <p class="section-subtitle">
+            Nutrient-dense, chef-tested, and scientifically balanced meals designed to optimize cellular repair, sustain steady energy, and accelerate physical adaptation.
+          </p>
+        </div>
+
+        <!-- Food Category Filter Pills -->
+        <div class="food-filter-pills reveal-item" role="tablist" aria-label="Food Categories">
+          <button class="food-pill active" role="tab" aria-selected="true" data-food-cat="all">All Fuel</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="breakfast">Breakfast</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="lunch">Lunch</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="dinner">Dinner</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="snacks">Snacks</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="pre-workout">Pre-Workout</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="post-workout">Post-Workout</button>
+          <button class="food-pill" role="tab" aria-selected="false" data-food-cat="hydration">Hydration</button>
+        </div>
+
+        <!-- Food Cards Grid -->
+        <div class="food-cards-grid" id="food-grid">
+          <!-- Breakfast -->
+          <article class="food-card reveal-item" data-food="breakfast">
+            <div class="food-media">
+              <img src="images/food-oats.jpg" alt="High-Protein Power Oats" loading="lazy">
+              <span class="meal-time-badge">7:00 AM - 9:00 AM</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Breakfast</span>
+              <h3 class="food-name">High-Protein Berry & Chia Power Oats</h3>
+              <p class="food-desc">Slow-burning complex carbohydrates paired with organic whey/plant isolate and antioxidant-packed blueberries.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>Rolled oats, almond milk, chia seeds, fresh blueberries, whey isolate, raw honey drizzle.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 5 mins cook time • Simmer oats with almond milk, stir protein powder off heat, top with chia and berries.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">420</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">32g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">54g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">9g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lunch -->
+          <article class="food-card reveal-item" data-food="lunch">
+            <div class="food-media">
+              <img src="images/food-lunch.jpg" alt="Mediterranean Quinoa Bowl" loading="lazy">
+              <span class="meal-time-badge">12:30 PM - 1:30 PM</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Lunch</span>
+              <h3 class="food-name">Grilled Herb Chicken & Quinoa Bowl</h3>
+              <p class="food-desc">Tender pasture-raised chicken breast layered over warm fluffy quinoa, roasted peppers, and avocado slices.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>Herb chicken breast, tricolor quinoa, baby spinach, cherry tomatoes, kalamata olives, extra virgin olive oil.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 15 mins • Grill seasoned chicken strips, toss warm quinoa with olive oil, assemble greens and vegetables.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">580</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">46g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">48g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">18g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pre-Workout -->
+          <article class="food-card reveal-item" data-food="pre-workout">
+            <div class="food-media">
+              <img src="images/food-keto.jpg" alt="Pre workout energy snack" loading="lazy">
+              <span class="meal-time-badge">45 Mins Before Training</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Pre-Workout</span>
+              <h3 class="food-name">Artisan Banana Toast with Almond Butter</h3>
+              <p class="food-desc">Rapidly bioavailable glycogen booster with balanced potassium to prevent cramps and fuel high reps.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>Sprouted sourdough bread, 1 ripe banana, natural almond butter, ground Ceylon cinnamon.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 3 mins • Toast bread until crisp, spread 1 tbsp almond butter, slice banana and sprinkle cinnamon.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">290</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">8g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">42g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">11g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Post-Workout -->
+          <article class="food-card reveal-item" data-food="post-workout">
+            <div class="food-media">
+              <img src="images/food-shake.jpg" alt="Recovery Shake" loading="lazy">
+              <span class="meal-time-badge">Within 30 Mins After Training</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Post-Workout</span>
+              <h3 class="food-name">Anabolic Nitro Whey Recovery Shake</h3>
+              <p class="food-desc">Fast-absorbing cold-processed whey isolate with tart cherry juice for accelerated muscle fiber repair.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>30g whey isolate, frozen dark cherries, unsweetened oat milk, pinch of Himalayan pink salt.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 2 mins • Blend all ingredients at high speed until silky smooth. Drink immediately.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">310</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">36g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">28g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">4g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dinner -->
+          <article class="food-card reveal-item" data-food="dinner">
+            <div class="food-media">
+              <img src="images/food-dinner.jpg" alt="Wild Salmon and Asparagus" loading="lazy">
+              <span class="meal-time-badge">6:30 PM - 8:00 PM</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Dinner</span>
+              <h3 class="food-name">Wild-Caught Salmon & Roasted Sweet Potato</h3>
+              <p class="food-desc">Rich in Omega-3 EPA/DHA fatty acids to mitigate exercise-induced inflammation and support overnight sleep quality.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>Wild Alaskan salmon fillet, roasted sweet potato cubes, steamed asparagus spears, fresh lemon wedges.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 20 mins • Pan-sear salmon 4 mins per side; roast sweet potato in oven at 400°F until caramelized.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">540</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">42g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">38g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">22g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Snacks -->
+          <article class="food-card reveal-item" data-food="snacks">
+            <div class="food-media">
+              <img src="images/food-vegan.jpg" alt="Greek yogurt with walnuts" loading="lazy">
+              <span class="meal-time-badge">Mid-Morning / Afternoon</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Snacks</span>
+              <h3 class="food-name">Cultured Greek Yogurt & Raw Walnuts</h3>
+              <p class="food-desc">Slow-digesting micellar casein and gut-friendly probiotics to crush hunger cravings between work sessions.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>Plain 0% Greek yogurt, raw English walnuts, fresh raspberries, splash of vanilla extract.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 2 mins • Spoon yogurt into bowl, fold in crushed walnuts and fresh raspberries.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">240</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">22g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">12g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">10g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hydration -->
+          <article class="food-card reveal-item" data-food="hydration">
+            <div class="food-media">
+              <img src="images/food-hydration.jpg" alt="Electrolyte Hydration" loading="lazy">
+              <span class="meal-time-badge">All Day Continuous</span>
+            </div>
+            <div class="food-content">
+              <span class="food-cat-label">Hydration</span>
+              <h3 class="food-name">Electrolyte Mineral Hydration Elixir</h3>
+              <p class="food-desc">Optimizes cellular hydration, cellular osmolarity, and muscular contraction speed without synthetic dyes.</p>
+              
+              <div class="food-ingredients">
+                <strong>Key Ingredients:</strong>
+                <span>Filtered spring water, fresh lemon juice, unrefined sea salt pinch, magnesium malate powder, mint sprig.</span>
+              </div>
+
+              <div class="food-prep">
+                <strong>Prep:</strong> 1 min • Stir minerals into chilled water. Consume 2-3 liters distributed evenly throughout daylight hours.
+              </div>
+
+              <div class="macros-grid">
+                <div class="macro-item"><span class="macro-val">15</span><span class="macro-lbl">Calories</span></div>
+                <div class="macro-item"><span class="macro-val">0g</span><span class="macro-lbl">Protein</span></div>
+                <div class="macro-item"><span class="macro-val">3g</span><span class="macro-lbl">Carbs</span></div>
+                <div class="macro-item"><span class="macro-val">0g</span><span class="macro-lbl">Fats</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Nutrition Advisory Disclaimer Banner -->
+        <aside class="nutrition-disclaimer reveal-item" role="note">
+          <div class="disclaimer-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="disclaimer-body">
+            <strong>Important Nutritional Disclaimer:</strong>
+            <p>
+              The dietary plans, macro breakdowns, and recipes provided here are for informational and educational purposes only. Individual caloric requirements vary significantly based on metabolic rate, body composition, medical history, and daily expenditure. Personalized nutrition plans should always be obtained from a licensed registered dietitian (RD) or qualified healthcare professional.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         DAILY FOOD ROUTINE (INTERACTIVE TIMELINE)
+    ======================================================== -->
+    <section id="daily-routine" class="section routine-section" aria-labelledby="routine-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+            <span>SYNCHRONIZED TIMING</span>
+          </div>
+          <h2 id="routine-title" class="section-title">YOUR DAILY FUEL ROUTINE</h2>
+          <p class="section-subtitle">
+            Click any milestone in the daily clock to reveal optimized meal combinations, hydration schedules, and digestive recovery recommendations.
+          </p>
+        </div>
+
+        <!-- Interactive Timeline Navigation -->
+        <div class="routine-timeline-nav reveal-item" role="tablist" aria-label="Daily meal timeline">
+          <button class="timeline-step active" role="tab" aria-selected="true" data-step="1">
+            <span class="step-time">07:30 AM</span>
+            <span class="step-title">Morning</span>
+            <span class="step-badge">Breakfast</span>
+          </button>
+          <button class="timeline-step" role="tab" aria-selected="false" data-step="2">
+            <span class="step-time">10:30 AM</span>
+            <span class="step-title">Mid-Morning</span>
+            <span class="step-badge">Snack</span>
+          </button>
+          <button class="timeline-step" role="tab" aria-selected="false" data-step="3">
+            <span class="step-time">01:00 PM</span>
+            <span class="step-title">Afternoon</span>
+            <span class="step-badge">Lunch</span>
+          </button>
+          <button class="timeline-step" role="tab" aria-selected="false" data-step="4">
+            <span class="step-time">04:30 PM</span>
+            <span class="step-title">Pre-Workout</span>
+            <span class="step-badge">Fuel</span>
+          </button>
+          <button class="timeline-step" role="tab" aria-selected="false" data-step="5">
+            <span class="step-time">06:00 PM</span>
+            <span class="step-title">Post-Workout</span>
+            <span class="step-badge">Recovery</span>
+          </button>
+          <button class="timeline-step" role="tab" aria-selected="false" data-step="6">
+            <span class="step-time">08:00 PM</span>
+            <span class="step-title">Evening</span>
+            <span class="step-badge">Dinner</span>
+          </button>
+        </div>
+
+        <!-- Interactive Detail Showcase Box -->
+        <div class="routine-detail-card reveal-item" id="routine-detail-display" aria-live="polite">
+          <div class="routine-detail-header">
+            <div class="detail-time-tag" id="detail-slot-time">07:30 AM • MORNING START</div>
+            <h3 class="detail-meal-name" id="detail-slot-title">High-Protein Berry & Chia Power Oats</h3>
+          </div>
+          <div class="routine-detail-body">
+            <div class="detail-col">
+              <h4>Nutritional Focus</h4>
+              <p id="detail-slot-focus">Replenishes liver glycogen depleted overnight, provides sustained slow-release glucose, and spikes muscle protein synthesis.</p>
+              <h4>Recommended Hydration</h4>
+              <p id="detail-slot-hydration">500ml room temperature water with a pinch of Celtic sea salt and lemon juice before eating.</p>
+            </div>
+            <div class="detail-col">
+              <h4>Ingredients & Assembly</h4>
+              <p id="detail-slot-ingredients">Rolled organic oats, scoop of clean isolate protein, chia seeds, fresh blueberries, and crushed almonds.</p>
+              <h4>Trainer Advice</h4>
+              <p id="detail-slot-coach">"Do not skip morning protein. Consuming 30 grams within 90 minutes of waking supports stable dopamine levels throughout the morning." — Coach Marcus</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FITNESS GOALS SECTION
+    ======================================================== -->
+    <section id="goals" class="section goals-section" aria-labelledby="goals-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>TAILORED ROADMAPS</span>
+          </div>
+          <h2 id="goals-title" class="section-title">WHAT'S YOUR FITNESS GOAL?</h2>
+          <p class="section-subtitle">
+            Select your primary objective below. Our system will immediately tailor recommended training routines, trainer pairings, and sustainable daily focus habits.
+          </p>
+        </div>
+
+        <div class="goals-grid">
+          <!-- Goal 1 -->
+          <div class="goal-card reveal-item" data-goal="strength" tabindex="0">
+            <div class="goal-icon" aria-hidden="true">🏋️‍♂️</div>
+            <h3 class="goal-name">Build Strength</h3>
+            <p class="goal-desc">Develop dense muscular power, reinforce joint integrity, and master foundational multi-joint calisthenics.</p>
+            <div class="goal-recommendation">Recommended: Hypertrophy Circuit & Marcus Vance</div>
+            <button class="btn btn-sm btn-outline goal-btn">Select Goal</button>
+          </div>
+
+          <!-- Goal 2 -->
+          <div class="goal-card reveal-item" data-goal="fitness" tabindex="0">
+            <div class="goal-icon" aria-hidden="true">⚡</div>
+            <h3 class="goal-name">Improve Fitness</h3>
+            <p class="goal-desc">Increase VO2 max, elevate baseline cardiovascular efficiency, and enhance overall endurance.</p>
+            <div class="goal-recommendation">Recommended: HIIT Interval Burn & Jordan Miller</div>
+            <button class="btn btn-sm btn-outline goal-btn">Select Goal</button>
+          </div>
+
+          <!-- Goal 3 -->
+          <div class="goal-card reveal-item" data-goal="mobility" tabindex="0">
+            <div class="goal-icon" aria-hidden="true">🧘‍♀️</div>
+            <h3 class="goal-name">Improve Mobility</h3>
+            <p class="goal-desc">Unlock tight hips and thoracic stiffness, eliminate movement restrictions, and flow freely.</p>
+            <div class="goal-recommendation">Recommended: Spine & Hip Mobility & Elena Rostova</div>
+            <button class="btn btn-sm btn-outline goal-btn">Select Goal</button>
+          </div>
+
+          <!-- Goal 4 -->
+          <div class="goal-card reveal-item" data-goal="active" tabindex="0">
+            <div class="goal-icon" aria-hidden="true">🏃‍♂️</div>
+            <h3 class="goal-name">Become More Active</h3>
+            <p class="goal-desc">Break sedentary habits gently with non-intimidating daily routines that leave you energized, not exhausted.</p>
+            <div class="goal-recommendation">Recommended: Desk Break Re-Energizer & David Okafor</div>
+            <button class="btn btn-sm btn-outline goal-btn">Select Goal</button>
+          </div>
+
+          <!-- Goal 5 -->
+          <div class="goal-card reveal-item" data-goal="home" tabindex="0">
+            <div class="goal-icon" aria-hidden="true">🏠</div>
+            <h3 class="goal-name">Home Training</h3>
+            <p class="goal-desc">Master living-room routines requiring zero equipment and zero commute, engineered for maximum consistency.</p>
+            <div class="goal-recommendation">Recommended: Zero Equipment Starter & Sarah Chen</div>
+            <button class="btn btn-sm btn-outline goal-btn">Select Goal</button>
+          </div>
+
+          <!-- Goal 6 -->
+          <div class="goal-card reveal-item" data-goal="beginner" tabindex="0">
+            <div class="goal-icon" aria-hidden="true">🌱</div>
+            <h3 class="goal-name">Beginner Fitness</h3>
+            <p class="goal-desc">A calm, step-by-step launchpad with full vocal cues, safe progression ladders, and friendly support.</p>
+            <div class="goal-recommendation">Recommended: Morning Warm-Up & David Okafor</div>
+            <button class="btn btn-sm btn-outline goal-btn">Select Goal</button>
+          </div>
+        </div>
+
+        <!-- Realistic Expectations Advisory -->
+        <div class="goal-disclaimer reveal-item" role="note">
+          <p>
+            <strong>Note on Realistic Progress:</strong> Physical adaptation is an ongoing, gradual process that requires regular consistency, adequate sleep, and nutritious fuel over time. ELEVE8 does not make unrealistic promises or guarantee overnight transformations. Sustainable health is built day by day.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FITNESS HELP / FAQ SECTION
+    ======================================================== -->
+    <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>EXPERT GUIDANCE</span>
+          </div>
+          <h2 id="faq-title" class="section-title">FITNESS QUESTIONS? WE CAN HELP.</h2>
+          <p class="section-subtitle">
+            Find answers to common questions about training frequency, proper home setup, injury prevention, and building sustainable workout habits.
+          </p>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-accordion" id="faq-accordion-group">
+          <!-- Q1 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-1" id="faq-btn-1">
+              <span class="accordion-question">How often should I exercise each week?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-1" class="accordion-panel" role="region" aria-labelledby="faq-btn-1" hidden>
+              <p>
+                For most healthy adults, major health organizations recommend accumulating at least 150 minutes of moderate aerobic activity or 75 minutes of vigorous exercise each week, alongside muscle-strengthening activities on 2 or more days. A balanced ELEVE8 routine typically consists of 3 to 4 focused training days coupled with daily gentle walks and morning mobility flows.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-2" id="faq-btn-2">
+              <span class="accordion-question">Can I get effective workout results at home?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-2" class="accordion-panel" role="region" aria-labelledby="faq-btn-2" hidden>
+              <p>
+                Absolutely. Calisthenics and bodyweight exercises can create immense progressive tension through leverage shifts, mechanical tempo changes, and increased range of motion. Combined with the ELEVE8 workout timer and voice coach, you can achieve remarkable cardiovascular conditioning, muscular tone, and functional flexibility in your living room.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-3" id="faq-btn-3">
+              <span class="accordion-question">What should beginners start with?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-3" class="accordion-panel" role="region" aria-labelledby="faq-btn-3" hidden>
+              <p>
+                Beginners should begin with our "Foundational Strength 101" and "Morning Full Body Warm-Up" routines. Start with 10 to 15 minutes per session, 3 times a week. The most important initial metric is showing up consistently rather than pushing yourself to exhaustion.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-4" id="faq-btn-4">
+              <span class="accordion-question">What should I do before exercising?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-4" class="accordion-panel" role="region" aria-labelledby="faq-btn-4" hidden>
+              <p>
+                Always complete 5 to 8 minutes of dynamic warm-ups (such as joint rotations, arm sweeps, and light bodyweight squats) to elevate core body temperature and prepare joint capsules. Drink a glass of water, ensure proper footwear and clear workout space, and listen to the voice coach's introductory cues.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-5" id="faq-btn-5">
+              <span class="accordion-question">How can I stay consistent with my fitness routine?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-5" class="accordion-panel" role="region" aria-labelledby="faq-btn-5" hidden>
+              <p>
+                Habit stacking is key: anchor your exercise to an existing routine, such as doing your 10-minute morning workout immediately after making your bed. Track your completed workouts, prioritize fun movements, and remember that a 10-minute workout done today is infinitely better than an imaginary 1-hour session tomorrow.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-6" id="faq-btn-6">
+              <span class="accordion-question">How do I choose between morning and night routines?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-6" class="accordion-panel" role="region" aria-labelledby="faq-btn-6" hidden>
+              <p>
+                Morning routines are designed to stimulate adrenaline, elevate heart rate, and clear mental sluggishness for the upcoming workday. Evening routines focus on parasympathetic activation, spinal decompression, and cortisol reduction to support restful sleep. You can freely combine a 10-minute morning session with an 8-minute evening stretch!
+              </p>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="accordion-item reveal-item">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-7" id="faq-btn-7">
+              <span class="accordion-question">When should I rest and take time off?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-ans-7" class="accordion-panel" role="region" aria-labelledby="faq-btn-7" hidden>
+              <p>
+                Rest is when muscles rebuild and neuromuscular adaptation takes place. Schedule at least 1 to 2 dedicated recovery days weekly. If you experience persistent lethargy, sharp joint pain, or elevated resting heart rate, take an extra rest day or switch to gentle mobility breathing.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Health Safety Advisory Banner -->
+        <div class="health-safety-banner reveal-item" role="alert">
+          <div class="safety-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="safety-content">
+            <strong>Medical & Safety Advisory:</strong>
+            <p>
+              Always consult your physician before beginning any new exercise or physical conditioning regimen, especially if you have pre-existing cardiovascular, musculoskeletal, or metabolic conditions. <strong>Immediately stop exercising</strong> if you experience chest tightness, dizziness, sharp pain, or shortness of breath, and seek prompt professional medical assistance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         REGISTRATION SECTION
+    ======================================================== -->
+    <section id="register" class="section register-section" aria-labelledby="register-title">
+      <div class="section-container">
+        <div class="register-grid">
+          <!-- Left Info Column -->
+          <div class="register-info reveal-item">
+            <div class="section-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>JOIN THE MOVEMENT</span>
+            </div>
+            <h2 id="register-title" class="section-title">REGISTER WITH ELEVE8 FITNESS GYM</h2>
+            <p class="register-desc">
+              Create your free member account today. Gain immediate access to all morning routines, interactive countdown timers, spoken voice coaching, and nutrition plans.
+            </p>
+
+            <ul class="register-perks">
+              <li>
+                <div class="perk-icon">✓</div>
+                <div>
+                  <strong>Unlimited Routines</strong>
+                  <p>Access all 50+ guided home and gym workout sessions.</p>
+                </div>
+              </li>
+              <li>
+                <div class="perk-icon">✓</div>
+                <div>
+                  <strong>Web Speech Trainer Coaching</strong>
+                  <p>Audio voice coaching guidance right inside your web browser.</p>
+                </div>
+              </li>
+              <li>
+                <div class="perk-icon">✓</div>
+                <div>
+                  <strong>Personalized Saved Settings</strong>
+                  <p>Keep your favorite routines and accessibility preferences saved locally.</p>
+                </div>
+              </li>
+            </ul>
+
+            <!-- Active User Status Card (when logged in via LocalStorage) -->
+            <div id="user-profile-badge" class="user-profile-badge" style="display: none;">
+              <div class="badge-avatar" id="badge-avatar-letter">E</div>
+              <div class="badge-details">
+                <span class="badge-status-pill">ACTIVE ELEVE8 MEMBER</span>
+                <strong id="badge-user-name">Welcome Back</strong>
+                <span id="badge-user-goal" class="badge-goal-text">Goal: Build Strength</span>
+              </div>
+              <button id="logout-btn" class="btn btn-sm btn-outline">Switch Account</button>
+            </div>
+          </div>
+
+          <!-- Right Form Column -->
+          <div class="register-form-card reveal-item">
+            <div class="form-header">
+              <h3 class="form-title">Membership Application</h3>
+              <p class="form-subtitle">Complete the fields below to personalize your workout experience.</p>
+            </div>
+
+            <!-- Status Alert Box -->
+            <div id="form-alert" class="form-alert" role="alert" aria-live="assertive" style="display: none;"></div>
+
+            <form id="eleve8-reg-form" novalidate>
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="reg-fullname" class="form-label">Full Name <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <input type="text" id="reg-fullname" name="fullname" class="form-input" placeholder="e.g. Alex Morgan" required autocomplete="name">
+                </div>
+                <span class="field-error" id="err-fullname"></span>
+              </div>
+
+              <!-- Email & Phone Grid -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="reg-email" class="form-label">Email Address <span class="required">*</span></label>
+                  <div class="input-wrap">
+                    <input type="email" id="reg-email" name="email" class="form-input" placeholder="alex@example.com" required autocomplete="email">
+                  </div>
+                  <span class="field-error" id="err-email"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                  <div class="input-wrap">
+                    <input type="tel" id="reg-phone" name="phone" class="form-input" placeholder="+1 (555) 019-2834" required autocomplete="tel">
+                  </div>
+                  <span class="field-error" id="err-phone"></span>
+                </div>
+              </div>
+
+              <!-- Age & Fitness Goal -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="reg-age" class="form-label">Age <span class="required">*</span></label>
+                  <div class="input-wrap">
+                    <input type="number" id="reg-age" name="age" class="form-input" min="14" max="100" placeholder="e.g. 28" required>
+                  </div>
+                  <span class="field-error" id="err-age"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-goal" class="form-label">Primary Fitness Goal <span class="required">*</span></label>
+                  <div class="select-wrap">
+                    <select id="reg-goal" name="goal" class="form-select" required>
+                      <option value="">Select your main goal...</option>
+                      <option value="Build Strength">Build Strength</option>
+                      <option value="Improve Fitness">Improve General Fitness</option>
+                      <option value="Improve Mobility">Improve Mobility & Flexibility</option>
+                      <option value="Become More Active">Become More Active Daily</option>
+                      <option value="Home Training">Master Home Training</option>
+                      <option value="Beginner Fitness">Beginner Fitness Journey</option>
+                    </select>
+                  </div>
+                  <span class="field-error" id="err-goal"></span>
+                </div>
+              </div>
+
+              <!-- Preferred Workout Time & Experience Level -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="reg-time" class="form-label">Preferred Workout Time <span class="required">*</span></label>
+                  <div class="select-wrap">
+                    <select id="reg-time" name="preferredTime" class="form-select" required>
+                      <option value="">Select preferred time...</option>
+                      <option value="Early Morning (6 AM - 9 AM)">Early Morning (6 AM - 9 AM)</option>
+                      <option value="Mid-Day / Lunch (11 AM - 2 PM)">Mid-Day / Lunch (11 AM - 2 PM)</option>
+                      <option value="Late Afternoon (4 PM - 7 PM)">Late Afternoon (4 PM - 7 PM)</option>
+                      <option value="Evening / Night (7 PM - 10 PM)">Evening / Night (7 PM - 10 PM)</option>
+                    </select>
+                  </div>
+                  <span class="field-error" id="err-time"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-level" class="form-label">Experience Level <span class="required">*</span></label>
+                  <div class="select-wrap">
+                    <select id="reg-level" name="level" class="form-select" required>
+                      <option value="">Select experience...</option>
+                      <option value="Beginner">Beginner (Starting fresh)</option>
+                      <option value="Intermediate">Intermediate (1-2 years experience)</option>
+                      <option value="Advanced">Advanced (3+ years experience)</option>
+                    </select>
+                  </div>
+                  <span class="field-error" id="err-level"></span>
+                </div>
+              </div>
+
+              <!-- Training Location & Password -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="reg-location" class="form-label">Primary Training Style <span class="required">*</span></label>
+                  <div class="select-wrap">
+                    <select id="reg-location" name="location" class="form-select" required>
+                      <option value="Home Training">Home Training (Zero equipment)</option>
+                      <option value="Gym Training">Gym Training (Weights & machines)</option>
+                      <option value="Hybrid Both">Hybrid (Both Home & Gym)</option>
+                    </select>
+                  </div>
+                  <span class="field-error" id="err-location"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="reg-password" class="form-label">Create Password <span class="required">*</span></label>
+                  <div class="input-wrap">
+                    <input type="password" id="reg-password" name="password" class="form-input" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password">
+                  </div>
+                  <span class="field-error" id="err-password"></span>
+                </div>
+              </div>
+
+              <!-- Terms Checkbox -->
+              <div class="form-group-checkbox">
+                <label class="checkbox-container">
+                  <input type="checkbox" id="reg-terms" name="terms" required>
+                  <span class="checkmark" aria-hidden="true"></span>
+                  <span class="checkbox-label">
+                    I agree to the <a href="#contact" class="link-inline">terms of service</a> and <a href="#contact" class="link-inline">privacy policy</a>.
+                  </span>
+                </label>
+                <span class="field-error" id="err-terms"></span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="btn-submit-registration" class="btn btn-primary btn-full btn-lg">
+                <span>CREATE ACCOUNT</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT SECTION & GYM LOCATIONS
+    ======================================================== -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+      <div class="section-container">
+        <div class="section-header reveal-item">
+          <div class="section-tag">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>CONNECT WITH US</span>
+          </div>
+          <h2 id="contact-title" class="section-title">GET IN TOUCH WITH ELEVE8</h2>
+          <p class="section-subtitle">
+            Have questions regarding personalized training programs, trainer booking, or facilities? Our fitness advisory team is here for you 7 days a week.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Info Cards -->
+          <div class="contact-info-cards reveal-item">
+            <div class="contact-card">
+              <div class="contact-icon">📍</div>
+              <h4>Flagship Facility</h4>
+              <p>ELEVE8 High-Performance Center<br>742 Olympus Boulevard, Suite 500<br>Metropolis, NY 10001</p>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">⏰</div>
+              <h4>Operating Hours</h4>
+              <p>Monday – Sunday: 24 Hours Open<br>Trainer Desk: 06:00 AM – 10:00 PM<br>Online Platform: Always Active 24/7</p>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">📞</div>
+              <h4>Direct Support</h4>
+              <p>General Inquiries: (800) 555-ELEV8<br>Email: support@eleve8fitness.com<br>Response Time: Within 2 Hours</p>
+            </div>
+          </div>
+
+          <!-- Quick Message Form -->
+          <div class="contact-form-wrap reveal-item">
+            <form id="contact-message-form">
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Your Email</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="your.email@domain.com" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Subject</label>
+                <input type="text" id="contact-subject" class="form-input" placeholder="e.g. Question about morning mobility routine" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-msg" class="form-label">Message</label>
+                <textarea id="contact-msg" class="form-textarea" rows="4" placeholder="How can our trainers support your journey?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                <span>SEND MESSAGE</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       WORKOUT TIMER MODAL (CIRCULAR INTERACTIVE PLAYER)
+  ======================================================== -->
+  <div id="timer-modal" class="timer-modal" role="dialog" aria-modal="true" aria-labelledby="timer-modal-title" hidden>
+    <div class="timer-modal-backdrop" id="timer-backdrop"></div>
+    <div class="timer-modal-dialog">
+      <!-- Modal Close Button -->
+      <button id="close-timer-btn" class="modal-close-btn" aria-label="Close workout timer">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Routine Progress Bar -->
+      <div class="timer-routine-progress" aria-label="Workout routine sequence progress">
+        <div class="progress-info">
+          <span id="timer-sequence-status">Exercise 1 of 8</span>
+          <span id="timer-routine-title">Morning Routine</span>
+        </div>
+        <div class="progress-track">
+          <div id="timer-progress-fill" class="progress-fill" style="width: 12.5%;"></div>
+        </div>
+      </div>
+
+      <!-- Exercise Info -->
+      <div class="timer-exercise-info">
+        <span class="timer-tag" id="timer-difficulty-badge">BEGINNER</span>
+        <h3 id="timer-modal-title" class="timer-exercise-title">Full Body Warm-Up</h3>
+        <p id="timer-exercise-instructions" class="timer-exercise-instructions">
+          Rotate neck and shoulders gently. Breathe steadily.
+        </p>
+      </div>
+
+      <!-- Animated Circular Timer (SVG Circle with dashoffset) -->
+      <div class="circular-timer-wrap">
+        <svg class="circular-timer-svg" viewBox="0 0 280 280" width="280" height="280">
+          <!-- Background track -->
+          <circle class="timer-circle-bg" cx="140" cy="140" r="115" stroke-width="12"/>
+          <!-- Animated progress ring -->
+          <circle id="timer-circle-progress" class="timer-circle-bar" cx="140" cy="140" r="115" stroke-width="12" stroke-dasharray="722.56" stroke-dashoffset="0"/>
+        </svg>
+
+        <!-- Centered Countdown Number Display -->
+        <div class="timer-center-content">
+          <span id="timer-countdown-display" class="timer-countdown-digits" aria-live="polite">00:30</span>
+          <span id="timer-state-label" class="timer-state-label">READY</span>
+        </div>
+      </div>
+
+      <!-- Voice Coach Quick Status Bar inside Modal -->
+      <div class="modal-voice-banner">
+        <button id="modal-voice-btn" class="btn-modal-voice" aria-label="Listen to voice coach instructions">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <span id="modal-voice-text">Trainer Voice Instructions</span>
+        </button>
+      </div>
+
+      <!-- Timer Controls Bar -->
+      <div class="timer-controls-bar">
+        <!-- Previous Exercise Button -->
+        <button id="btn-timer-prev" class="timer-ctrl-btn" title="Previous exercise" aria-label="Previous Exercise">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </button>
+
+        <!-- Primary Start / Pause Toggle Button -->
+        <button id="btn-timer-toggle" class="timer-main-action-btn" aria-label="Start workout timer">
+          <svg id="timer-play-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg id="timer-pause-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+
+        <!-- Reset Button -->
+        <button id="btn-timer-reset" class="timer-ctrl-btn" title="Reset current timer" aria-label="Reset timer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+
+        <!-- Next Exercise Button -->
+        <button id="btn-timer-next" class="timer-ctrl-btn" title="Next exercise" aria-label="Next Exercise">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       TRAINER DETAIL MODAL
+  ======================================================== -->
+  <div id="trainer-modal" class="trainer-modal" role="dialog" aria-modal="true" aria-labelledby="modal-trainer-name" hidden>
+    <div class="trainer-modal-backdrop" id="trainer-backdrop"></div>
+    <div class="trainer-modal-dialog">
+      <button id="close-trainer-btn" class="modal-close-btn" aria-label="Close trainer profile">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="trainer-modal-content">
+        <div class="trainer-modal-header">
+          <span class="trainer-badge-specialty" id="modal-trainer-specialty">Specialty</span>
+          <h3 id="modal-trainer-name" class="trainer-name">Trainer Name</h3>
+          <p id="modal-trainer-exp" class="trainer-exp">Experience</p>
+        </div>
+        <div class="trainer-modal-body">
+          <h4>Coaching Philosophy & Credentials</h4>
+          <p id="modal-trainer-bio">Trainer bio description...</p>
+        </div>
+        <div class="trainer-modal-footer">
+          <button id="modal-trainer-speak-btn" class="btn btn-primary btn-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <span>Hear Trainer's Advice</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FOOTER
+  ======================================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <a href="#hero" class="logo-link">
+            <div class="logo-icon-wrap" aria-hidden="true">
+              <img src="images/logo.svg" alt="ELEVE8 Logo Icon" class="logo-svg" width="44" height="44">
+            </div>
+            <div class="logo-text">
+              <span class="brand-eleve">ELEVE<span class="brand-8">8</span></span>
+              <span class="brand-sub">FITNESS GYM</span>
+            </div>
+          </a>
+          <p class="footer-tagline">
+            Empowering individuals of every fitness level through scientifically structured workouts, intelligent audio coaching, and mindful nutritional routines.
+          </p>
+          <div class="footer-socials" aria-label="ELEVE8 Social Channels">
+            <a href="#contact" class="social-icon" aria-label="ELEVE8 on Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#contact" class="social-icon" aria-label="ELEVE8 on YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+            <a href="#contact" class="social-icon" aria-label="ELEVE8 on Twitter / X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links Column 1 -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Workout Programs</h4>
+          <ul class="footer-links">
+            <li><a href="#morning-workout">Morning Energizer (AM)</a></li>
+            <li><a href="#night-workout">Night Restoration (PM)</a></li>
+            <li><a href="#online-workouts">Home Calisthenics</a></li>
+            <li><a href="#online-workouts">HIIT & Conditioning</a></li>
+            <li><a href="#online-workouts">Spine & Hip Mobility</a></li>
+            <li><a href="#online-workouts">Quick 10-Minute Starters</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2 -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Nutrition & Coaching</h4>
+          <ul class="footer-links">
+            <li><a href="#food-plans">Fuel Your Fitness</a></li>
+            <li><a href="#daily-routine">Daily Timing Routine</a></li>
+            <li><a href="#trainers">Meet Our Master Coaches</a></li>
+            <li><a href="#goals">Goal Recommendation Engine</a></li>
+            <li><a href="#faq">Exercise Help & FAQ</a></li>
+            <li><a href="#register">Create Free Account</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer-links-col footer-newsletter-col">
+          <h4 class="footer-col-title">Stay Elevated</h4>
+          <p class="footer-subtext">Subscribe for weekly coach tips, zero-fluff nutrition guides, and new workout releases.</p>
+          <form id="newsletter-form" class="newsletter-form">
+            <div class="newsletter-input-wrap">
+              <input type="email" placeholder="Your email address" class="newsletter-input" required aria-label="Email address for weekly tips">
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <span id="newsletter-msg" class="newsletter-msg"></span>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright-text">
+          &copy; 2026 ELEVE8 FITNESS GYM LLC. All rights reserved. Elevate Your Body. Elevate Your Life.
+        </p>
+        <div class="footer-bottom-links">
+          <a href="#faq">Privacy Policy</a>
+          <span>•</span>
+          <a href="#faq">Terms of Service</a>
+          <span>•</span>
+          <a href="#faq">Medical Disclaimer</a>
+          <span>•</span>
+          <a href="#site-header">Back to Top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
